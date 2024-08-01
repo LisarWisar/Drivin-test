@@ -4,28 +4,36 @@ import React from "react";
 import { useState } from "react";
 
 import TestData from "@/app/lib/utils"
+import { FiltersInterface } from "@/app/lib/utils";
 
-
-export default function table () {
+export default function Table ({
+    filters,
+    currentPage,
+  }: {
+    filters: FiltersInterface;
+    currentPage: number;
+  }) {
 
     const [sortColumn, setSortColumn] = useState(null);
     const [sortOrder, setSortOrder] = useState("asc");
 
-    let testData = TestData(); //test data of 40 entries
+    const testData = TestData() //test data of 40 entries
+    const firstIndex = (currentPage-1)*20;
+    const lastIndex = Math.min((currentPage*20),testData.length);
 
-    const sortedProducts = [...testData].sort((a, b) => {
+    const sortedVehicles = [...testData].sort((a, b) => {
         if (sortColumn) {
             if (sortOrder === "asc") {
-            return a[sortColumn] < b[sortColumn] ? -1 : 1;
+                return a[sortColumn] < b[sortColumn] ? -1 : 1;
             } else {
-            return a[sortColumn] > b[sortColumn] ? -1 : 1;
+                return a[sortColumn] > b[sortColumn] ? -1 : 1;
             }
         } else {
             return 0;
         }
-    });
+    }).slice(firstIndex, lastIndex);
 
-    const handleSort = (column) => {
+    const handleSort = (column: string | null) => {
         if (sortColumn === column) {
           setSortOrder(sortOrder === "asc" ? "desc" : "asc");
         } else {
@@ -69,7 +77,7 @@ export default function table () {
                 </tr>
             </thead>
             <tbody>
-                {sortedProducts.map((car) => ( //Caution, API response has no id column, must be added manually
+                {sortedVehicles.map((car) => ( //Caution, API response has no id column, must be added manually
                     <tr key={car.id}>
                         <td>{car.class}</td>
                         <td>{car.fuel_type}</td>
@@ -86,3 +94,4 @@ export default function table () {
         </table>
     )
 }
+

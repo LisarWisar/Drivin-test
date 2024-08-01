@@ -17,3 +17,11 @@ export default function TestData () {
     }
     return newData;
 }
+
+export interface FiltersInterface {
+    class?: string;
+    make?: string;
+    model?: string;
+    year?: number;
+    transmission?: string;
+}
