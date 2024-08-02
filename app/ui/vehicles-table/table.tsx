@@ -3,8 +3,7 @@
 import React from "react";
 import { useState } from "react";
 
-import TestData from "@/app/lib/utils"
-import { FiltersInterface } from "@/app/lib/utils";
+import { FiltersInterface, TestData } from "@/app/lib/utils";
 
 export default function Table ({
     filters,
