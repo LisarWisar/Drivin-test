@@ -3,12 +3,14 @@
 import React from "react";
 import { useState } from "react";
 
-import { FiltersInterface, TestData } from "@/app/lib/utils";
+import { FiltersInterface, CarsDataInterface} from "@/app/lib/utils";
 
 export default function Table ({
+    data,
     filters,
     currentPage,
   }: {
+    data: CarsDataInterface[];
     filters: FiltersInterface;
     currentPage: number;
   }) {
@@ -16,11 +18,11 @@ export default function Table ({
     const [sortColumn, setSortColumn] = useState(null);
     const [sortOrder, setSortOrder] = useState("asc");
 
-    const testData = TestData() //test data of 40 entries
+    //const data = TestData(); //test data of 40 entries
     const firstIndex = (currentPage-1)*20;
-    const lastIndex = Math.min((currentPage*20),testData.length);
+    const lastIndex = Math.min((currentPage*20),data.length);
 
-    const sortedVehicles = [...testData].sort((a, b) => {
+    const sortedVehicles = [...data].sort((a, b) => {
         if (sortColumn) {
             if (sortOrder === "asc") {
                 return a[sortColumn] < b[sortColumn] ? -1 : 1;
@@ -76,8 +78,8 @@ export default function Table ({
                 </tr>
             </thead>
             <tbody>
-                {sortedVehicles.map((car) => ( //Caution, API response has no id column, must be added manually
-                    <tr key={car.id}>
+                {sortedVehicles.map((car, index) => ( //Caution, API response has no id column, must be added manually
+                    <tr key={index}>
                         <td>{car.class}</td>
                         <td>{car.fuel_type}</td>
                         <td>{car.make}</td>
