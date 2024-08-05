@@ -15,22 +15,6 @@ export default async function Page({
   const currentPage = Number(searchParams?.page) || 1;
   //const carsData = await FetchAllData({"limit": 50});
   const carsData = TestData();
-  if (carsData.length%20 !== 0){
-    for (let i = 0; i < carsData.length%20; i++){
-      carsData.push({
-        "class": "",
-        "fuel_type": "",
-        "make": "",
-        "model": "",
-        "year": "",
-        "transmission": "",
-        "city_mpg": "",
-        "highway_mpg": "",
-        "combination_mpg": ""
-      })
-    }
-  }
-
   const totalPages = Math.ceil(carsData.length/20);
 
   return (
@@ -38,7 +22,7 @@ export default async function Page({
       <div className="mt-5 flex w-full justify-center">
         { <Pagination totalPages={totalPages} /> }
       </div>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen my-4">
         <Table data={carsData} filters={{}} currentPage={currentPage}/>
       </div>
       <div className="mt-5 flex w-full justify-center">

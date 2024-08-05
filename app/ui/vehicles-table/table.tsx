@@ -42,7 +42,7 @@ export default function Table ({
         }
       };
 
-      const sortSvg = (column) =>
+      const sortSvg = (column: string) =>
         sortColumn === column ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function Table ({
         ) : null;
 
     return(
-        <table className="min-w-full border text-left border-collapse rounded-lg overflow-hidden items-start">
+        <table className="min-w-full border-collapse text-left rounded-lg overflow-hidden items-start">
             <thead className="bg-blue-100">
                 <tr>
                     <th scope="col" onClick={() => handleSort("class")} className="p-2 w-2/12">
@@ -122,15 +122,15 @@ export default function Table ({
             <tbody className="bg-white">
                 {sortedVehicles.map((car, index) => (
                     <tr key={index}>
-                        <td className="pl-3 pt-2.5">{car.class}</td>
-                        <td className="pl-3">{car.fuel_type}</td>
-                        <td className="pl-3">{car.make}</td>
-                        <td className="pl-3">{car.model}</td>
-                        <td className="pl-3">{car.year}</td>
-                        <td className="pl-3">{car.transmission}</td>
-                        <td className="pl-3">{car.city_mpg}</td>
-                        <td className="pl-3">{car.highway_mpg}</td>
-                        <td className="pl-3">{car.combination_mpg}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.class}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.fuel_type}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.make}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.model}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.year}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.transmission}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.city_mpg}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.highway_mpg}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.combination_mpg}</td>
                     </tr>
                 ))}
                 <tr className="h-full"></tr>
