@@ -1,36 +1,5 @@
 import ApiKey from "@/api-key";
 
-export function TestData () {
-    let newData = [];
-    for (let i = 0; i < 30; i++){
-        newData.push({
-            "class": "clase",
-            "fuel_type": "combustible",
-            "make": "Toyota",
-            "model": "Camry",
-            "year": (i+1).toString(),
-            "transmission": "manual",
-            "city_mpg": "40 mpg",
-            "highway_mpg": "30 mpg",
-            "combination_mpg": "20 mpg"
-        })
-    }
-    for (let i = 0; i < 20; i++){
-        newData.push({
-            "class": "clase12312",
-            "fuel_type": "combustible1232112312312312312",
-            "make": "Toyota",
-            "model": "Camry",
-            "year": (i+1).toString(),
-            "transmission": "manual123123",
-            "city_mpg": "40 mpg",
-            "highway_mpg": "30 mpg",
-            "combination_mpg": "20 mpg"
-        })
-    }
-    return newData;
-}
-
 export async function FetchSpecificModel(filters: FiltersInterface) { //Fetch for a specific model since the endpoint requires at least one filter being used
 
     let urlFilters = "";
@@ -68,22 +37,38 @@ export async function FetchAllData (filters: FiltersInterface){
     
     //const carModels = ["camry", "yaris", "a4", "a3", "accent", "mustang"]
     const carModels = ["camry"] //models have to be manually typed because endpoints for carmakes and carmodels are behind a paywall on api-ninjas
-    let data: any = [];
-    if(!filters["model"]){
+    const carFilters: FiltersInterface = {"limit": "50"};
+    let data: any = []
         for (let i = 0; i < carModels.length; i++){
-            filters["model"] = carModels[i];
-            const tempData = await FetchSpecificModel(filters);
+            carFilters["model"] = carModels[i];
+            const tempData = await FetchSpecificModel(carFilters);
             data = data.concat(tempData);
         }
+
+    let filteredData: any = [];
+    if (Object.keys(filters).length !== 0){ //Apply filters if there are any
+        for (let index in data){
+            if(data[index]["class"] === filters["class"] || !filters["class"]){
+                if(data[index]["make"] === filters["make"] || !filters["make"]){
+                    if(data[index]["model"] === filters["model"] || !filters["model"]){
+                        if(data[index]["year"]?.toString()  === filters["year"]?.toString() || !filters["year"]){
+                            if(data[index]["transmission"] === filters["transmission"] || !filters["transmission"]){
+                                filteredData.push(data[index]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    else{
-        data = await FetchSpecificModel(filters);
+    else {
+        filteredData = data
     }
-    
-    return data;
+
+    return filteredData;
 }
 
-export const generatePagination = (currentPage: number, totalPages: number) => {
+export function generatePagination (currentPage: number, totalPages: number) {
     // If the total number of pages is 7 or less,
     // display all pages without any ellipsis.
     if (totalPages <= 7) {
@@ -116,8 +101,58 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     ];
   };
 
+  export function GetFilterOptions (data: CarsDataInterface[]) {
 
-export interface FiltersInterface {
+    let filters: FiltersDataInterface = {
+        "class": new Set(),
+        "make": new Set(),
+        "model": new Set(),
+        "year": new Set(),
+        "transmission": new Set()
+    }
+
+    for (let car in data){
+        for (let key in data[car]){  //Add filters to temporary set to eliminate duplicates
+            switch(key){
+                case "class":
+                    filters[key].add(data[car][key])
+                    break;
+                case "make":
+                    filters[key].add(data[car][key])
+                    break;
+                case "model":
+                    filters[key].add(data[car][key])
+                    break;
+                case "year":
+                    filters[key].add(data[car][key])
+                    break;
+                case "transmission":
+                    filters[key].add(data[car][key])
+                    break;
+            }
+        }
+    }
+    let filtersArrays = { //Turn sets back to array to allow use of array functions
+        "class": Array.from(filters["class"]),
+        "make": Array.from(filters["make"]),
+        "model": Array.from(filters["model"]),
+        "year": Array.from(filters["year"]),
+        "transmission": Array.from(filters["transmission"])
+    };
+    
+    return filtersArrays;
+}
+
+export interface FiltersDataInterface{ //Data to be shown on the filters menu
+    [key: string]: any;
+    "class": Set<string>,
+    "make": Set<string>,
+    "model": Set<string>,
+    "year": Set<number>,
+    "transmission": Set<string>
+}
+
+export interface FiltersInterface { //Filters selected by the user
     [key: string]: any;
     class?: string | null;
     make?: string | null;
@@ -126,7 +161,8 @@ export interface FiltersInterface {
     transmission?: string | null;
 }
 
-export interface CarsDataInterface {
+export interface CarsDataInterface { //Data received from the API
+        [key: string]: any;
         city_mpg: number;
         class: string;
         combination_mpg: number;

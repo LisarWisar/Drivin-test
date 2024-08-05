@@ -3,15 +3,13 @@
 import React from "react";
 import { useState } from "react";
 
-import { FiltersInterface, CarsDataInterface} from "@/app/lib/utils";
+import {CarsDataInterface} from "@/app/lib/utils";
 
 export default function Table ({
     data,
-    filters,
     currentPage,
   }: {
     data: CarsDataInterface[];
-    filters: FiltersInterface;
     currentPage: number;
   }) {
 
@@ -33,6 +31,7 @@ export default function Table ({
         }
     }).slice(firstIndex, lastIndex);
 
+    console.log(sortedVehicles.length);
     const handleSort = (column: string | null) => {
         if (sortColumn === column) {
           setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -122,17 +121,18 @@ export default function Table ({
             <tbody className="bg-white">
                 {sortedVehicles.map((car, index) => (
                     <tr key={index}>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.class}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.fuel_type}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.make}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.model}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.class[0].toUpperCase()+car.class.slice(1)}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.fuel_type[0].toUpperCase()+car.fuel_type.slice(1)}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.make[0].toUpperCase()+car.make.slice(1)}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.model[0].toUpperCase()+car.model.slice(1)}</td>
                         <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.year}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.transmission}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.city_mpg}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.highway_mpg}</td>
-                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.combination_mpg}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.transmission === "a" ? "Automatic" : "Manual"}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.city_mpg + " mpg"}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.highway_mpg + " mpg"}</td>
+                        <td className="pl-3 py-2.5 border-b-2 border-blue-50">{car.combination_mpg + " mpg"}</td>
                     </tr>
                 ))}
+                {sortedVehicles.length === 0 ? <tr className="flex items-center"><p>No results match your search criteria</p></tr>: null}
                 <tr className="h-full"></tr>
             </tbody>
         </table>
