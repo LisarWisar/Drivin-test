@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vehicle Manager
 
-## Getting Started
+## About the app
+EN: This app consists of a table with data from https://api-ninjas.com/api/cars displayed on a maximum of 20 items per page. It allows the user to order each column by ascendant or descendant order by click on the header of the column. There are also a number of different filter options the user can choose from to search for specific results.
+IMPORTANT!: To use the API the user must use their own API KEY, which can be changed on drivin-coding-test/lib/utils line:24, the table will show no results if the API KEY is not changed.
 
-First, run the development server:
+ES: Esta aplicación consiste en una tabla con datos de https://api-ninjas.com/api/cars desplegados en un máximo de 20 items por página. El usuario puede modificar el orden de las columnas en ascendiente o descendiente al hacer click en el encabezado de la columna. También se agregaron diferentes opciones de filtro entre las que el usuario puede elegir para buscar algún resultado más específico.
+¡IMPORTANT!: Para usar la API el usuario debe usar su propia API KEY, la cual puede ser cambiada en drivin-coding-test/lib/utils line:24, si no se cambia la API KEY la tabla no mostrará resultados.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies
+EN: This program was made using Typescript, Nextjs, HTML and CSS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ES: Este programa fue creado utilizando Typescript, Nextjs, HTML y CSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to run the app
+EN:
+-Change the API KEY as explained on the "About the app" section
+-Go to the "Drivin test/drivin-coding-test" folder
+-Use the command "npm run dev" on the terminal to start the app, it should appear to you on http://localhost:3000/
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ES:
+-Cambia la API KEY según lo explicado en la sección "About the app"
+-Ve a la carpeta "Drivin test/drivin-coding-test"
+-Usa el comando "npm run dev" en la terminal para iniciar la aplicación, esta debería aparecer en http://localhost:3000/
