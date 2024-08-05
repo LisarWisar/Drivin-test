@@ -18,7 +18,6 @@ export default function Table ({
     const [sortColumn, setSortColumn] = useState(null);
     const [sortOrder, setSortOrder] = useState("asc");
 
-    //const data = TestData(); //test data of 40 entries
     const firstIndex = (currentPage-1)*20;
     const lastIndex = Math.min((currentPage*20),data.length);
 
@@ -42,57 +41,100 @@ export default function Table ({
           setSortOrder("asc");
         }
       };
+
+      const sortSvg = (column) =>
+        sortColumn === column ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+          >
+            {sortOrder === "asc" ? (
+              <path d="M7 10l5 5 5-5z" />
+            ) : (
+              <path d="M7 14l5-5 5 5z" />
+            )}
     
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        ) : null;
 
     return(
-        <table className="min-w-full">
-            <thead>
+        <table className="min-w-full border text-left border-collapse rounded-lg overflow-hidden items-start">
+            <thead className="bg-blue-100">
                 <tr>
-                    <th scope="col" onClick={() => handleSort("class")}>
-                        Tipo de auto
+                    <th scope="col" onClick={() => handleSort("class")} className="p-2 w-2/12">
+                        <div className="flex  flex-row items-center">
+                            <p>Tipo de auto</p>
+                            {sortSvg("class")}
+                        </div>
                     </th>
-                    <th scope="col" onClick={() => handleSort("fuel_type")}>    
-                        Tipo de combustible
+                    <th scope="col" onClick={() => handleSort("fuel_type")}  className="p-2  w-2/12">  
+                        <div className="flex flex-row items-center">  
+                            <p>Tipo de combustible</p>
+                            {sortSvg("fuel_type")}
+                        </div>
                     </th> 
-                    <th scope="col" onClick={() => handleSort("make")}>
-                        Marca
+                    <th scope="col" onClick={() => handleSort("make")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Marca</p>
+                            {sortSvg("make")}
+                        </div>
                     </th> 
-                    <th scope="col" onClick={() => handleSort("model")}>
-                        Modelo
+                    <th scope="col" onClick={() => handleSort("model")} className="p-2 w-2/12">
+                        <div className="flex flex-row items-center">
+                            <p>Modelo</p>
+                            {sortSvg("model")}
+                        </div>
                     </th> 
-                    <th scope="col" onClick={() => handleSort("year")}>
-                        Año
+                    <th scope="col" onClick={() => handleSort("year")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Año</p>
+                            {sortSvg("year")}
+                        </div>
                     </th> 
-                    <th scope="col" onClick={() => handleSort("transmission")}>
-                        Tipo de transmisión
+                    <th scope="col" onClick={() => handleSort("transmission")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Tipo de transmisión</p>
+                            {sortSvg("transmission")}
+                        </div>
                     </th>
-                    <th scope="col" onClick={() => handleSort("city_mpg")}>
-                        Consumo en ciudad
+                    <th scope="col" onClick={() => handleSort("city_mpg")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Consumo en ciudad</p>
+                            {sortSvg("city_mpg")}
+                        </div>
                     </th>  
-                    <th scope="col" onClick={() => handleSort("highway_mpg")}>
-                        Consumo en carretera
+                    <th scope="col" onClick={() => handleSort("highway_mpg")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Consumo en carretera</p>
+                            {sortSvg("highway_mpg")}
+                        </div>
                     </th>  
-                    <th scope="col" onClick={() => handleSort("combination_mpg")}>
-                        Consumo mixto
+                    <th scope="col" onClick={() => handleSort("combination_mpg")} className="p-2 w-1/12">
+                        <div className="flex flex-row items-center">
+                            <p>Consumo mixto</p>
+                            {sortSvg("combination_mpg")}
+                        </div>
                     </th>  
                 </tr>
             </thead>
-            <tbody>
-                {sortedVehicles.map((car, index) => ( //Caution, API response has no id column, must be added manually
+            <tbody className="bg-white">
+                {sortedVehicles.map((car, index) => (
                     <tr key={index}>
-                        <td>{car.class}</td>
-                        <td>{car.fuel_type}</td>
-                        <td>{car.make}</td>
-                        <td>{car.model}</td>
-                        <td>{car.year}</td>
-                        <td>{car.transmission}</td>
-                        <td>{car.city_mpg}</td>
-                        <td>{car.highway_mpg}</td>
-                        <td>{car.combination_mpg}</td>
+                        <td className="pl-3 pt-2.5">{car.class}</td>
+                        <td className="pl-3">{car.fuel_type}</td>
+                        <td className="pl-3">{car.make}</td>
+                        <td className="pl-3">{car.model}</td>
+                        <td className="pl-3">{car.year}</td>
+                        <td className="pl-3">{car.transmission}</td>
+                        <td className="pl-3">{car.city_mpg}</td>
+                        <td className="pl-3">{car.highway_mpg}</td>
+                        <td className="pl-3">{car.combination_mpg}</td>
                     </tr>
                 ))}
+                <tr className="h-full"></tr>
             </tbody>
         </table>
     )
 }
-

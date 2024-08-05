@@ -71,11 +71,17 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     position?: 'first' | 'last' | 'middle' | 'single';
     isActive: boolean;
   }) {
-  
+
+    const roundedLeft = (position === "first" || position === "single") ? "rounded-l-md" : "";
+    const roundedRight = (position === "last" || position === "single") ? "rounded-r-md" : "";
+    const middleButton = position === "middle" ? "text-gray-300" : "";
+    const hover = (!isActive && position !== "middle") ? "hover:bg-gray-100" : "";
+    const activePageButton = isActive ? "z-10 bg-blue-400 border-blue-500 text-white" : "";
+
     return isActive || position === 'middle' ? (
-      <div className="px-2">{page}</div>
+      <div className={`flex h-10 w-10 items-center justify-center text-sm border ${roundedLeft} ${roundedRight} ${middleButton} ${hover} ${activePageButton}`}>{page}</div>
     ) : (
-      <Link className="px-2" href={href}>
+      <Link className={`flex h-10 w-10 items-center justify-center text-sm border ${roundedLeft} ${roundedRight} ${middleButton} ${hover} ${activePageButton}`} href={href}>
         {page}
       </Link>
     );
@@ -91,18 +97,23 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     isDisabled?: boolean;
   }) {
   
-    //const icon =
-    //  direction === 'left' ? (
-    //    <ArrowLeftIcon className="w-4" />
-    //  ) : (
-    //    <ArrowRightIcon className="w-4" />
-    //  );
+    const arrow =
+      direction === 'left' ? (
+        <p>Prev</p>
+      ) : (
+        <p>Next</p>
+      );
+
+      const pointerEvents = isDisabled ? "pointer-events-none text-gray-300" : "";
+      const hover = !isDisabled ? "hover:bg-gray-100" : "";
+      const marginRight = direction === "left" ? "mr-2 md:mr-4" : "";
+      const marginLeft = direction === "right" ? "ml-2 md:ml-4" : "";
   
     return isDisabled ? (
-      <div>Flecha</div>
+      <div className={`flex h-10 w-10 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`}>{arrow}</div>
     ) : (
-      <Link  href={href}>
-        Flecha
+      <Link className={`flex h-10 w-10 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`} href={href}>
+        {arrow}
       </Link>
     );
   }

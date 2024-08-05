@@ -2,14 +2,27 @@ import ApiKey from "@/api-key";
 
 export function TestData () {
     let newData = [];
-    for (let i = 0; i < 41; i++){
+    for (let i = 0; i < 30; i++){
         newData.push({
             "class": "clase",
             "fuel_type": "combustible",
             "make": "Toyota",
             "model": "Camry",
-            "year": i+1,
+            "year": (i+1).toString(),
             "transmission": "manual",
+            "city_mpg": "40 mpg",
+            "highway_mpg": "30 mpg",
+            "combination_mpg": "20 mpg"
+        })
+    }
+    for (let i = 0; i < 20; i++){
+        newData.push({
+            "class": "clase12312",
+            "fuel_type": "combustible1232112312312312312",
+            "make": "Toyota",
+            "model": "Camry",
+            "year": (i+1).toString(),
+            "transmission": "manual123123",
             "city_mpg": "40 mpg",
             "highway_mpg": "30 mpg",
             "combination_mpg": "20 mpg"
