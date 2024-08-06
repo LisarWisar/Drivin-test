@@ -99,9 +99,9 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   
     const arrow =
       direction === 'left' ? (
-        <p>Prev</p>
+        <p>Anterior</p>
       ) : (
-        <p>Next</p>
+        <p>Siguiente</p>
       );
 
       const pointerEvents = isDisabled ? "pointer-events-none text-gray-300" : "";
@@ -110,9 +110,9 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
       const marginLeft = direction === "right" ? "ml-2 md:ml-4" : "";
   
     return isDisabled ? (
-      <div className={`flex h-10 w-14 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`}>{arrow}</div>
+      <div className={`flex h-10 w-24 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`}>{arrow}</div>
     ) : (
-      <Link className={`flex h-10 w-14 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`} href={href}>
+      <Link className={`flex h-10 w-24 items-center justify-center rounded-md border ${pointerEvents} ${hover} ${marginRight} ${marginLeft}`} href={href}>
         {arrow}
       </Link>
     );

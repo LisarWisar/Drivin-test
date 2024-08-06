@@ -35,8 +35,7 @@ export async function FetchSpecificModel(filters: FiltersInterface) { //Fetch fo
 
 export async function FetchAllData (filters: FiltersInterface){
     
-    //const carModels = ["camry", "yaris", "a4", "a3", "accent", "mustang"]
-    const carModels = ["camry"] //models have to be manually typed because endpoints for carmakes and carmodels are behind a paywall on api-ninjas
+    const carModels = ["camry", "yaris", "a4", "a3", "accent", "mustang"] //models have to be manually typed because endpoints for carmakes and carmodels are behind a paywall on api-ninjas
     const carFilters: FiltersInterface = {"limit": "50"};
     let data: any = []
         for (let i = 0; i < carModels.length; i++){

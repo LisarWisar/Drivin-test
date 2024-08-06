@@ -60,11 +60,19 @@ export default function CarFilters({
                     </button>
                 </div>
                     {classFilterOpen && (
-                        <div className="border rounded-md my-1">
+                        <div className="border rounded-md my-1 absolute bg-white">
+                            <div
+                            className={classFilterSelected === "" ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
+                            onClick={() => {
+                                handleFilter("class", null);
+                                handleClassSelected("");
+                            }}>
+                                Sin filtro
+                            </div>
                             {filters["class"].map(function (option: string) {
                                 return(
                                     <div
-                                    className={classFilterSelected === option ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
+                                    className={classFilterSelected === option ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
                                     onClick={() => {
                                         handleFilter("class", option);
                                         handleClassSelected(option);
@@ -73,14 +81,6 @@ export default function CarFilters({
                                     </div>
                                 )
                             })}
-                            <div
-                            className={classFilterSelected === "" ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
-                            onClick={() => {
-                                handleFilter("class", null);
-                                handleClassSelected("");
-                            }}>
-                                No filters
-                            </div>
                         </div>
                     )}
             </div>
@@ -91,11 +91,19 @@ export default function CarFilters({
                     </button>
                 </div>
                 {makeFilterOpen && (
-                    <div className="border rounded-md my-1">
+                    <div className="border rounded-md my-1 absolute bg-white">
+                        <div
+                            className={makeFilterSelected === "" ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
+                            onClick={() => {
+                                handleFilter("make", null);
+                                handleMakeSelected("");
+                            }}>
+                                Sin filtro
+                        </div>
                         {filters["make"].map(function (option: string) {
                             return(
                                 <div 
-                                className={makeFilterSelected === option ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
+                                className={makeFilterSelected === option ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
                                 onClick={() => {
                                     handleFilter("make", option)
                                     handleMakeSelected(option);
@@ -105,14 +113,6 @@ export default function CarFilters({
                                 
                             )
                         })}
-                        <div
-                            className={makeFilterSelected === "" ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
-                            onClick={() => {
-                                handleFilter("make", null);
-                                handleMakeSelected("");
-                            }}>
-                                No filters
-                        </div>
                     </div>
                 )}
             </div>
@@ -123,10 +123,18 @@ export default function CarFilters({
                     </button>
                 </div>
                 {modelFilterOpen && (
-                    <div className="border rounded-md my-1">
+                    <div className="border rounded-md my-1 absolute bg-white">
+                        <div
+                            className={modelFilterSelected === "" ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
+                            onClick={() => {
+                                handleFilter("model", null);
+                                handleModelSelected("");
+                            }}>
+                                Sin filtro
+                        </div>
                         {filters["model"].map(function (option: string) {
                             return(
-                                <div className={modelFilterSelected === option ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
+                                <div className={modelFilterSelected === option ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
                                 onClick={() => {
                                     handleFilter("model", option);
                                     handleModelSelected(option);
@@ -135,14 +143,6 @@ export default function CarFilters({
                                 </div>
                             )
                         })}
-                        <div
-                            className={modelFilterSelected === "" ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
-                            onClick={() => {
-                                handleFilter("model", null);
-                                handleModelSelected("");
-                            }}>
-                                No filters
-                        </div>
                     </div>
                 )}
             </div>
@@ -153,10 +153,18 @@ export default function CarFilters({
                     </button>
                 </div>
                 {yearFilterOpen && (
-                    <div className="border rounded-md my-1">
+                    <div className="border rounded-md my-1 absolute bg-white">
+                        <div
+                            className={yearFilterSelected === "" ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
+                            onClick={() => {
+                                handleFilter("year", null);
+                                handleYearSelected("");
+                            }}>
+                                Sin filtro
+                        </div>
                         {filters["year"].map(function (option: string) {
                             return(
-                                <div className={yearFilterSelected === option ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
+                                <div className={yearFilterSelected === option ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
                                 onClick={() => {
                                     handleFilter("year", option);
                                     handleYearSelected(option);
@@ -165,14 +173,6 @@ export default function CarFilters({
                                 </div>
                             )
                         })}
-                        <div
-                            className={yearFilterSelected === "" ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
-                            onClick={() => {
-                                handleFilter("year", null);
-                                handleYearSelected("");
-                            }}>
-                                No filters
-                        </div>
                     </div>
                 )}
             </div>
@@ -183,10 +183,18 @@ export default function CarFilters({
                     </button>
                 </div>
                 {transmissionFilterOpen && (
-                    <div className="border rounded-md my-1">
+                    <div className="border rounded-md my-1 absolute bg-white">
+                        <div
+                            className={transmissionFilterSelected === "" ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
+                            onClick={() => {
+                                handleFilter("transmission", null);
+                                handleTransmissionSelected("");
+                            }}>
+                                Sin filtro
+                        </div>
                         {filters["transmission"].map(function (option: string) {
                             return(
-                                <div className={transmissionFilterSelected === option ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
+                                <div className={transmissionFilterSelected === option ? "bg-blue-600 text-white px-2": "hover:bg-blue-400 hover:text-white px-2"}
                                 onClick={() => {
                                     handleFilter("transmission", option);
                                     handleTransmissionSelected(option);
@@ -195,14 +203,6 @@ export default function CarFilters({
                                 </div>
                             )
                         })}
-                        <div
-                            className={transmissionFilterSelected === "" ? "bg-blue-600 text-white": "hover:bg-blue-400 hover:text-white"}
-                            onClick={() => {
-                                handleFilter("transmission", null);
-                                handleTransmissionSelected("");
-                            }}>
-                                No filters
-                        </div>
                     </div>
                 )}
             </div>
@@ -213,16 +213,16 @@ export default function CarFilters({
                     </button>
                 </div>
                 {mpgFilterOpen && (
-                <div>
-                    <div>
+                <div className="absolute bg-white border p-3 text-center">
+                    <div className="flex flex-col mb-5">
                         <label htmlFor="minMPG">Min MPG</label>
-                        <input placeholder="0 MPG" className="border px-2" onChange={(e) => handleFilter("min_mpg", e.target.value)}></input>
+                        <input placeholder="0 MPG" className="border px-2 ml-2 w-44" onChange={(e) => handleFilter("min_mpg", e.target.value)}></input>
                     </div>
-                    <div>
+                    <div className="flex flex-col mb-5">
                         <label htmlFor="maxMPG">Max MPG</label>
-                        <input placeholder="100 MPG" className="border px-2" onChange={(e) => handleFilter("max_mpg", e.target.value)}></input>
+                        <input placeholder="100 MPG" className="border px-2 ml-2 w-44" onChange={(e) => handleFilter("max_mpg", e.target.value)}></input>
                     </div>
-                    <div className="text-left pl-6 mt-3">
+                    <div className="text-left mt-3 pl-2">
                         <div>
                             <input type="radio" id="city" name="drone" value="city_mpg" onChange={(e) => handleFilter("mpg_type", e.target.value)}/>
                             <label htmlFor="city">Ciudad</label>
