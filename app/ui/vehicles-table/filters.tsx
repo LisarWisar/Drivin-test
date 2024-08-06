@@ -15,6 +15,7 @@ export default function CarFilters({
     const [modelFilterOpen, setModelFilterOpen] = useState(false);
     const [yearFilterOpen, setYearFilterOpen] = useState(false);
     const [transmissionFilterOpen, setTransmissionFilterOpen] = useState(false);
+    const [mpgFilterOpen, setMpgFilterOpen] = useState(false);
 
     const[classFilterSelected, setClassFilterSelected] = useState("");
     const[makeFilterSelected, setMakeFilterSelected] = useState("");
@@ -27,6 +28,7 @@ export default function CarFilters({
     const toggleModelFilter = () => {setModelFilterOpen(!modelFilterOpen)};
     const toggleYearFilter = () => {setYearFilterOpen(!yearFilterOpen)};
     const toggleTransmissionFilter = () => {setTransmissionFilterOpen(!transmissionFilterOpen)};
+    const toggleMpgFilter = () => {setMpgFilterOpen(!mpgFilterOpen)};
 
     const handleClassSelected = (option: string) => {setClassFilterSelected(option)}
     const handleMakeSelected = (option: string) => {setMakeFilterSelected(option)}
@@ -50,11 +52,11 @@ export default function CarFilters({
       };
     
     return(
-        <div className="flex flex-row justify-between px-10 mt-4 text-center">
-            <div className="px-2 w-1/5">
+        <div className="flex flex-row justify-between px-10 mt-4 text-center text-xs lg:text-sm 2xl:text-base">
+            <div className="px-2 w-1/6">
                 <div className="flex justify-center">
                     <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleClassFilter()}>
-                        Filter by class
+                        Tipo de auto
                     </button>
                 </div>
                     {classFilterOpen && (
@@ -82,10 +84,10 @@ export default function CarFilters({
                         </div>
                     )}
             </div>
-            <div className="px-2 w-1/5">
+            <div className="px-2 w-1/6">
                 <div className="flex justify-center">
                     <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleMakeFilter()}>
-                        Filter by make
+                        Marca
                     </button>
                 </div>
                 {makeFilterOpen && (
@@ -114,10 +116,10 @@ export default function CarFilters({
                     </div>
                 )}
             </div>
-            <div className="px-2 w-1/5">
+            <div className="px-2 w-1/6">
                 <div className="flex justify-center">
                     <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleModelFilter()}>
-                        Filter by model
+                        Modelo
                     </button>
                 </div>
                 {modelFilterOpen && (
@@ -144,10 +146,10 @@ export default function CarFilters({
                     </div>
                 )}
             </div>
-            <div className="px-2 w-1/5">
+            <div className="px-2 w-1/6">
                 <div className="flex justify-center">
                     <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleYearFilter()}>
-                        Filter by year
+                        Año
                     </button>
                 </div>
                 {yearFilterOpen && (
@@ -174,10 +176,10 @@ export default function CarFilters({
                     </div>
                 )}
             </div>
-            <div className="px-2 w-1/5">
+            <div className="px-2 w-1/6">
                 <div className="flex justify-center">
                     <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleTransmissionFilter()}>
-                        Filter by Transmission
+                        Transmisión
                     </button>
                 </div>
                 {transmissionFilterOpen && (
@@ -202,6 +204,39 @@ export default function CarFilters({
                                 No filters
                         </div>
                     </div>
+                )}
+            </div>
+            <div className="px-2 w-1/6">
+                <div className="flex justify-center">
+                    <button className="h-10 w-full border p-2 rounded-lg hover:bg-gray-100" onClick={() => toggleMpgFilter()}>
+                        Consumo
+                    </button>
+                </div>
+                {mpgFilterOpen && (
+                <div>
+                    <div>
+                        <label htmlFor="minMPG">Min MPG</label>
+                        <input placeholder="0 MPG" className="border px-2" onChange={(e) => handleFilter("min_mpg", e.target.value)}></input>
+                    </div>
+                    <div>
+                        <label htmlFor="maxMPG">Max MPG</label>
+                        <input placeholder="100 MPG" className="border px-2" onChange={(e) => handleFilter("max_mpg", e.target.value)}></input>
+                    </div>
+                    <div className="text-left pl-6 mt-3">
+                        <div>
+                            <input type="radio" id="city" name="drone" value="city_mpg" onChange={(e) => handleFilter("mpg_type", e.target.value)}/>
+                            <label htmlFor="city">Ciudad</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="highway" name="drone" value="highway_mpg" onChange={(e) => handleFilter("mpg_type", e.target.value)}/>
+                            <label htmlFor="highway">Carretera</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="combined" name="drone" value="combination_mpg" onChange={(e) => handleFilter("mpg_type", e.target.value)}/>
+                            <label htmlFor="combined">Mixto</label>
+                        </div>
+                    </div>
+                </div>
                 )}
             </div>
         </div>

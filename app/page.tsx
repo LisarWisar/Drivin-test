@@ -13,6 +13,9 @@ export default async function Page({
     model?: string;
     year?: number;
     transmission?: string;
+    min_mpg?: number;
+    max_mpg?: number;
+    mpg_type?: string
   };
 }) {
 
@@ -23,6 +26,9 @@ export default async function Page({
     "model": searchParams?.model || null,
     "year": searchParams?.year || null,
     "transmission": searchParams?.transmission || null,
+    "min_mpg": searchParams?.min_mpg || null,
+    "max_mpg": searchParams?.max_mpg || null,
+    "mpg_type": searchParams?.mpg_type || null
   });
   const nonFilteredCarsData = await FetchAllData({});
   const totalPages = Math.ceil(carsData.length/20);

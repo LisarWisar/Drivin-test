@@ -31,7 +31,6 @@ export default function Table ({
         }
     }).slice(firstIndex, lastIndex);
 
-    console.log(sortedVehicles.length);
     const handleSort = (column: string | null) => {
         if (sortColumn === column) {
           setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -59,7 +58,7 @@ export default function Table ({
         ) : null;
 
     return(
-        <table className="min-w-full border-collapse text-left rounded-lg overflow-hidden items-start">
+        <table className="min-w-full border-collapse text-left rounded-lg overflow-hidden items-start text-xs lg:text-base">
             <thead className="bg-blue-100">
                 <tr>
                     <th scope="col" onClick={() => handleSort("class")} className="p-2 w-2/12">

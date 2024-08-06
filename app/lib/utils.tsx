@@ -53,7 +53,10 @@ export async function FetchAllData (filters: FiltersInterface){
                     if(data[index]["model"] === filters["model"] || !filters["model"]){
                         if(data[index]["year"]?.toString()  === filters["year"]?.toString() || !filters["year"]){
                             if(data[index]["transmission"] === filters["transmission"] || !filters["transmission"]){
-                                filteredData.push(data[index]);
+                                if((data[index][filters["mpg_type"]] >= filters["min_mpg"] || !filters["min_mpg"]) || !filters["mpg_type"]){
+                                    if((data[index][filters["mpg_type"]] <= filters["max_mpg"] || !filters["max_mpg"]) || !filters["mpg_type"])
+                                        filteredData.push(data[index]);
+                                }
                             }
                         }
                     }
